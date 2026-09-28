@@ -1,0 +1,12 @@
+﻿Nom,Quantité,Composant
+"U1",1," Arduino Uno R3"
+"R0, R1, R2, R3",4," Photorésistance"
+"PIR1, PIR2",2," Capteur infrarouge passif"
+"UIR",1," Capteur infrarouge"
+"DIR_1, DIR_2",2,"Blanc LED"
+"R4, R5",2,"220 Ω Résistance"
+"R6, R7",2,"470 Ω Résistance"
+"D_TEMOIN",1,"Rouge LED"
+"S1",1," Bouton-poussoir"
+"D1",1,"Bleu LED"
+"R8, R9, R10, R11, R12",5,"10 kΩ Résistance"

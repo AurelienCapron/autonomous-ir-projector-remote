@@ -1,0 +1,8 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+*-backups/
+*.kicad_prl
+*.lck
+fp-info-cache

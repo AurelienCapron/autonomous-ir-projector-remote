@@ -1,0 +1,51 @@
+cd ~/Desktop/autonomous-ir-projector-remote
+git init
+git branch -M main
+mkdir -p assets docs firmware/arduino_ir_sender firmware/arduino_ir_receiver firmware/pico_main hardware_kicad
+
+pbpaste > assets/system_architecture.svg
+
+printf ".DS_Store\n.AppleDouble\n.LSOverride\n._*\n*-backups/\n*.kicad_prl\n*.lck\nfp-info-cache\n" > .gitignore
+printf "*.kicad_pcb linguist-detectable=true\n*.kicad_sch linguist-detectable=true\n" > .gitattributes
+
+mv ~/Desktop/BE-Elec-Projet-Type-Kicad.kicad_* hardware_kicad/
+mv ~/Desktop/Liste_composants.csv docs/bom_components.csv
+mv ~/Desktop/PROJET_T*commande.pdf docs/arduino_prototype_schematic.pdf
+
+mv ~/Desktop/Code_telecommande_projet_32.py firmware/pico_main/main.py
+mv ~/Desktop/code_emetteur.ino firmware/arduino_ir_sender/arduino_ir_sender.ino
+mv ~/Desktop/code_reception.ino firmware/arduino_ir_receiver/arduino_ir_receiver.ino
+
+mv ~/Desktop/Boite_3D.jpeg assets/enclosure_3d_base.jpg
+mv ~/Desktop/Couvercle_3D* assets/enclosure_3d_lid.jpg
+mv ~/Desktop/Boite_bois.jpeg assets/laser_cut_layout.jpg
+mv ~/Desktop/Diagramme*exigence*.png assets/sysml_requirements_diagram.png
+mv ~/Desktop/Soutenance*Finale-3.png assets/pcb_3d_render.png
+mv ~/Desktop/Soutenance*Finale-2.png assets/prototype_inside_wiring.png
+mv ~/Desktop/Soutenance*Finale.png assets/prototype_assembled_box.png
+mv ~/Desktop/Extrait_salle_conseils*.mp4 assets/autonomous_remote_demo.mp4
+
+sips -s format jpeg ~/Desktop/IMG_5531.HEIC --out assets/pcb_soldering_bench.jpg && rm -f ~/Desktop/IMG_5531.HEIC
+sips -s format jpeg ~/Desktop/IMG_5548.HEIC --out assets/project_defense_setup.jpg && rm -f ~/Desktop/IMG_5548.HEIC
+
+python3 -c "
+import fitz
+doc = fitz.open('$HOME/Desktop/Grp_32_Rapport_Projet.pdf')
+for pno, idx, out in [(10, 0, 'assets/nec_protocol_timing.png'), (11, 0, 'assets/ir_frame_oscilloscope.png')]:
+    imgs = doc[pno].get_images()
+    if imgs:
+        pix = fitz.Pixmap(doc, imgs[idx][0])
+        if pix.n - pix.alpha > 3: pix = fitz.Pixmap(fitz.csRGB, pix)
+        pix.save(out)
+doc.delete_pages(23, 25)
+doc.save('docs/project_report.pdf')
+" 2>/dev/null || cp ~/Desktop/Grp_32_Rapport_Projet.pdf docs/project_report.pdf
+
+python3 -c "
+import fitz
+doc = fitz.open('$HOME/Desktop/Soutenance Orale Version Finale.pdf')
+doc.delete_pages(30, 34)
+doc.save('docs/presentation_slides.pdf')
+" 2>/dev/null || cp ~/Desktop/Soutenance\ Orale\ Version\ Finale.pdf docs/presentation_slides.pdf
+
+rm -rf ~/Desktop/Grp_32_Rapport_Projet.pdf ~/Desktop/Soutenance\ Orale\ Version\ Finale.pdf ~/Desktop/BE-Elec-*-backups ~/Desktop/*.kicad_prl ~/Desktop/fp-info-cache ~/Desktop/software_interface.png
