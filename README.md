@@ -29,12 +29,12 @@ Conception matérielle (prototypage sur Arduino Uno puis PCB sur mesure sous KiC
 
 | Phase 1 : Prototypage sur breadboard (Arduino Uno) | Phase 2 : Conception PCB sur mesure (KiCad 9 — v1.2) |
 | :---: | :---: |
-| ![Prototype Breadboard Tinkercad](assets/arduino_breadboard_prototype.png) | ![Rendu 3D PCB KiCad](assets/pcb_3d_render.png) |
+| <img src="assets/arduino_breadboard_prototype.png" height="250" alt="Prototype Breadboard Tinkercad"> | <img src="assets/pcb_3d_render.png" height="250" alt="Rendu 3D PCB KiCad"> |
 | *Câblage initial sur plaque d'essai : Arduino Uno, 2 capteurs PIR, 4 LDR (`A0`–`A3`), récepteur et LED IR* | *Carte finale double face accueillant le Raspberry Pi Pico 2WH, l'étage LDO 5V et les connecteurs dédiés* |
 
 | Assemblage et soudure au laboratoire | Câblage interne dans le boîtier | Prototype final assemblé et testé |
 | :---: | :---: | :---: |
-| ![Soudure PCB](assets/pcb_soldering_bench.jpg) | ![Intérieur boîtier](assets/prototype_inside_wiring.png) | ![Boîtier assemblé](assets/prototype_assembled_box.png) |
+| <img src="assets/pcb_soldering_bench.jpg" height="300" alt="Soudure PCB"> | <img src="assets/prototype_inside_wiring.png" height="300" alt="Intérieur boîtier"> | <img src="assets/prototype_assembled_box.png" height="300" alt="Boîtier assemblé"> |
 
 ---
 
@@ -97,7 +97,7 @@ Le signal émis par la télécommande d'origine face au récepteur `GT1089` a é
 
 | Principe temporel du protocole NEC | Capture de la trame IR à l'oscilloscope Tektronix |
 | :---: | :---: |
-| ![Protocole NEC](assets/nec_protocol_timing.png) | ![Oscilloscope IR](assets/ir_frame_oscilloscope.png) |
+| <img src="assets/nec_protocol_timing.png" height="210" alt="Protocole NEC"> | <img src="assets/ir_frame_oscilloscope.png" height="210" alt="Oscilloscope IR"> |
 
 ### 2. Synthèse PWM 38 kHz et mode *Sniffer* sous MicroPython (`firmware/pico_main/main.py`)
 Le firmware principal embarqué sur le **Raspberry Pi Pico 2WH** pilote simultanément les deux émetteurs IR (`GPIO7` et `GPIO14`) via les générateurs PWM matériels cadencés à $38\text{ kHz}$ (rapport cyclique de 50 %, `duty_u16(32768)`) :
@@ -114,11 +114,11 @@ Pour protéger la carte électronique de la poussière dans le faux plafond tout
 
 | Modélisation 3D de la base | Modélisation 3D du couvercle | Plan 2D de découpe laser (`boxes.py`) |
 | :---: | :---: | :---: |
-| ![Base 3D](assets/enclosure_3d_base.jpg) | ![Couvercle 3D](assets/enclosure_3d_lid.jpg) | ![Plan découpe laser](assets/laser_cut_layout.jpg) |
+| <img src="assets/enclosure_3d_base.jpg" height="175" alt="Base 3D"> | <img src="assets/enclosure_3d_lid.jpg" height="175" alt="Couvercle 3D"> | <img src="assets/laser_cut_layout.jpg" height="175" alt="Plan découpe laser"> |
 
-| Démonstration lors de la soutenance finale |
+| Banc de démonstration lors de la soutenance finale |
 | :---: |
-| ![Soutenance](assets/project_defense_setup.jpg) |
+| <img src="assets/project_defense_setup.jpg" width="480" alt="Soutenance"> |
 
 ---
 
